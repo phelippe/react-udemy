@@ -6,3 +6,11 @@ button {
   border: 1px solid blue;
   padding: 8px;
 }
+
+.red {
+  color: red;
+}
+
+.bold {
+  font-weight: bold;
+}

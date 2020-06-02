@@ -12,7 +12,9 @@ class App extends Component {
     ],
     otherState: 'Some other value here',
     showPersons: false,
+    exInput: '',
   }
+
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
@@ -42,6 +44,10 @@ class App extends Component {
     this.setState({showPersons: !doesShow});
   }
 
+  inputChanged = (event) => {
+    this.setState({exInput: event.target.value});
+  }
+
   render() {
     let persons = null;
 
@@ -60,10 +66,32 @@ class App extends Component {
       );
     }
 
+    let textSize = null;
+
+    if(this.state.exInput.split('').length < 6) {
+      textSize = (
+        <p>Text too short</p>
+      );
+    } else if(this.state.exInput.split('').length > 20) {
+      textSize = (
+        <p>Text too long</p>
+      );
+    }
+    else {
+      textSize = null;
+    }
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
+        <hr />
+        <input type="text" 
+          onChange={this.inputChanged} 
+          value={this.state.exInput} />
+        <p>Input count: {this.state.exInput.split('').length}</p>
+        {textSize}
+        <hr />
         <button onClick={this.togglePersonHandler}>Switch some name</button>
         {persons}
       </div>
