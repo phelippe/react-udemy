@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+//import styled from 'styled-components';
+
 import Person from './Person/Person';
 
 class App extends Component {
@@ -49,6 +51,19 @@ class App extends Component {
   }
 
   render() {
+    const btnStyle = {
+      backgroundColor: 'green',
+      color: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black',
+      }
+    }
+
     let persons = null;
 
     if(this.state.showPersons) {
@@ -64,35 +79,29 @@ class App extends Component {
           })}
         </div>
       );
+
+      btnStyle.backgroundColor = 'red';
+      btnStyle[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black',
+      }
     }
 
-    let textSize = null;
+    const classes = [];
 
-    if(this.state.exInput.split('').length < 6) {
-      textSize = (
-        <p>Text too short</p>
-      );
-    } else if(this.state.exInput.split('').length > 20) {
-      textSize = (
-        <p>Text too long</p>
-      );
+    if(this.state.persons.length <= 2) {
+      classes.push('red'); // classes = ['red']
     }
-    else {
-      textSize = null;
+    if(this.state.persons.length < 2) {
+      classes.push('bold'); // classes = ['bold']
     }
 
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
+        <p className={classes.join(' ')}>This is really working!</p>
         <hr />
-        <input type="text" 
-          onChange={this.inputChanged} 
-          value={this.state.exInput} />
-        <p>Input count: {this.state.exInput.split('').length}</p>
-        {textSize}
-        <hr />
-        <button onClick={this.togglePersonHandler}>Switch some name</button>
+        <button style={btnStyle} onClick={this.togglePersonHandler}>Switch some name</button>
         {persons}
       </div>
     );

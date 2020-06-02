@@ -6,6 +6,9 @@ button {
   border: 1px solid blue;
   padding: 8px;
 }
+button:hover {
+  cursor: pointer;
+}
 
 .red {
   color: red;
