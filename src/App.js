@@ -51,7 +51,7 @@ import Person from './Person/Person';
 
   render() {
     let persons = null;
-    let btnClass =  [classes.BtnPrimary];
+    let btnClass = '';
 
     if(this.state.showPersons) {
       persons = (
@@ -67,7 +67,7 @@ import Person from './Person/Person';
         </div>
       );
 
-      btnClass.push(classes.Red);
+      btnClass = classes.Red;
     }
 
     const assignedClasses = [];
@@ -84,7 +84,7 @@ import Person from './Person/Person';
         <h1>Hi, I'm a React App</h1>
         <p className={assignedClasses.join(' ')}>This is really working!</p>
         <hr />
-        <button className={btnClass.join(' ')} onClick={this.togglePersonHandler}>Switch some name</button>
+        <button className={btnClass} onClick={this.togglePersonHandler}>Switch some name</button>
         {persons}
       </div>
     );
