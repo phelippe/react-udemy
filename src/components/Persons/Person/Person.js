@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Aux from '../../../hoc/Auxiliary'
 
 import classes from './Person.css';
 
@@ -7,12 +8,14 @@ class Person extends Component {
         console.log('[Person.js] rendering...');
 
         return (
-            <div className={classes.Person}>
-                <p onClick={this.props.click}>
-                    <span>I'm {this.props.name} and I am {this.props.age} years old!</span> <span>{this.props.children}</span>
-                </p>
-                <input type="text" onChange={this.props.changed} value={this.props.name} />
-            </div>
+            <Aux>
+                <div className={classes.Person}>
+                    <p onClick={this.props.click}>
+                        I'm {this.props.name} and I am {this.props.age} years old! {this.props.children}
+                    </p>
+                    <input type="text" onChange={this.props.changed} value={this.props.name} />
+                </div>
+            </Aux>
         );
     }
 }
